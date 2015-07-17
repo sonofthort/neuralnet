@@ -1,0 +1,28 @@
+<!-- Copyright, Eric Thortsen, All rights reserved. -->
+<html>
+<head>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<title>Neural Net</title>
+<script src="neuralnet.js"></script>
+</head>
+<body oncontextmenu="return false">
+<script>
+
+var worker = new Worker("neuralnetworker.js")
+
+worker.onmessage = function(e) {
+	var msg = e.data
+	
+	if (typeof msg === 'string') {
+		console.log('worker: ' + msg)
+	} else {
+		console.log('worker sent message: ' + JSON.stringify(msg))
+	}
+}
+
+worker.postMessage('ds')
+
+</script>
+</body>
+</html>
