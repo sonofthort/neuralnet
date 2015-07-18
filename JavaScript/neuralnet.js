@@ -1,7 +1,35 @@
 var neuralnet = {}
 
+neuralnet.fastexp3 = function(x) {
+    return (6 + x * (6 + x * (3 + x))) * 0.16666666
+}
+
+neuralnet.fastexp4 = function(x) {
+    return (24 + x * (24 + x * (12 + x * (4 + x)))) * 0.041666666
+}
+
+neuralnet.fastexp5 = function(x) {
+    return (120 + x * (120 + x * (60 + x * (20 + x * (5 + x))))) * 0.0083333333
+}
+
+neuralnet.fastexp6 = function(x) {
+    return (720 + x * (720 + x * (360 + x * (120 + x * (30 + x * (6 + x)))))) * 0.0013888888
+}
+
+neuralnet.fastexp7 = function(x) {
+    return (5040 + x * (5040 + x * (2520 + x * (840 + x * (210 + x * (42 + x * (7 + x))))))) * 0.00019841269
+}
+
+neuralnet.fastexp8 = function(x) {
+    return (40320 + x * (40320 + x * (20160 + x * (6720 + x * (1680 + x * (336 + x * (56 + x * (8 + x)))))))) * 2.4801587301e-5
+}
+
+neuralnet.fastexp9 = function(x) {
+  return (362880 + x * (362880 + x * (181440 + x * (60480 + x * (15120 + x * (3024 + x * (504 + x * (72 + x * (9 + x))))))))) * 2.75573192e-6
+}
+
 neuralnet.sigmoid = function(x) {
-	return 1 / (1 + Math.exp(-x))
+	return 1 / (1 + neuralnet.fastexp3(-x))
 }
 
 neuralnet.Net = function(sizes, initializer) {
@@ -18,8 +46,8 @@ neuralnet.Net = function(sizes, initializer) {
 	}
 	
 	this.sizes = sizes.slice()
-	this.weights = new Float32Array(numWeights)
-	this.data = new Float32Array(dataSize) // stores all the inputs/ouputs for each neuron from the last calculation
+	this.weights = new Float64Array(numWeights)
+	this.data = new Float64Array(dataSize) // stores all the inputs/ouputs for each neuron from the last calculation
 	
 	if (typeof initializer === 'function') {
 		this.update(initializer)
