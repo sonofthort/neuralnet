@@ -46,8 +46,8 @@ neuralnet.Net = function(sizes, initializer) {
 	}
 	
 	this.sizes = sizes.slice()
-	this.weights = new Float64Array(numWeights)
-	this.data = new Float64Array(dataSize) // stores all the inputs/ouputs for each neuron from the last calculation
+	this.weights = new Float32Array(numWeights)
+	this.data = new Float32Array(dataSize) // stores all the inputs/ouputs for each neuron from the last calculation
 	
 	if (typeof initializer === 'function') {
 		this.update(initializer)
