@@ -1,8 +1,6 @@
 # Neural Net
 Some neural net code. Examples of training a neural net to create game ai.
 
-Right now all C++ with OpenMP support.
-
 Only implements a feed forward net now and has some genetic algorithm examples for evolving the net.
 
 # TODO
